@@ -120,17 +120,17 @@ Most configurations can be done by modifying fields in [`config.json`](config.js
 
 - `inference_method` one of `[prob|argmax]`. When set to `prob`, actions will be sampled from the model output distribution, when set to `argmax`, the action with the highest probability will always be chosen. In general, `prob` produces better results but are less consistent and reproducible.
 
-- `full_port` describes whether or the model should go full ape mode, if `true`, it will use $100 \%$ of the portfolio for each trade, otherwise the amount of portfolio to use is determined by the action probability.
+- `full_port` describes whether or the model should go full ape mode, if `true`, it will use $`100 \%`$ of the portfolio for each trade, otherwise the amount of portfolio to use is determined by the action probability.
 
     - When set to `false`, the model will automatically enable [`doubling`](backend/manager.py#L67) (*similar to Blackjack*), which allows the model to *double down* on its existing position once more if an opportunity appears. 
 
-        - *e.g.* If the model used $50\%$ of the portfolio value to bought a stock at $\$100$ per share, and the price decreased to $\$90$ per share, the model could decide to double down and use the rest $50\%$ to buy at $\$90$ per share, effectively lowering the overall entry cost to $\$95$ per share by *doubling* its position size.
+        - *e.g.* If the model used $`50\%`$ of the portfolio value to bought a stock at $\$100$ per share, and the price decreased to $\$90$ per share, the model could decide to double down and use the rest $`50\%`$ to buy at $`\$90`$ per share, effectively lowering the overall entry cost to $`\$95`$ per share by *doubling* its position size.
 
-        - If the price later rises to $\$98$ per share and the model decides to sell, without doubling, the trade itself would have made a loss of $-2\%$, and the portfolio would have lost $-1\%$ of its value (*since the trade used $50\%$ of the portfolio value*), but with doubling, both the trade and the portfolio would have gained $+3.16\%$.
+        - If the price later rises to $`\$98`$ per share and the model decides to sell, without doubling, the trade itself would have made a loss of $`-2\%`$, and the portfolio would have lost $`-1\%`$ of its value (*since the trade used $`50\%`$ of the portfolio value*), but with doubling, both the trade and the portfolio would have gained $`+3.16\%`$.
 
-        - Consequently, if the price continued to drop, say to $\$80$ per share, then without doubling, the trade would have made a loss of $-20\%$, and for the portfolio, $-10\%$. However, if doubled, both the trade and portfolio would have made a loss of $-15.79\%$. 
+        - Consequently, if the price continued to drop, say to $`\$80`$ per share, then without doubling, the trade would have made a loss of $`-20\%`$, and for the portfolio, $`-10\%`$. However, if doubled, both the trade and portfolio would have made a loss of $`-15.79\%`$. 
 
-    - To account for the increased potential risk and reward, the reward multiplier $W_d$ is set to $2$ when doubling is in effect, otherwise $1$, so the model would receive $2\times $ the reward or punishment for the action.
+    - To account for the increased potential risk and reward, the reward multiplier $W_d$ is set to $2$ when doubling is in effect, otherwise $1$, so the model would receive $`2\times `$ the reward or punishment for the action.
 
     - Experiments showed that when `full_port` is enabled, it generally out-performs the doubling model, and often times manages to beat the market, even in relatively long timeframes. 
 
