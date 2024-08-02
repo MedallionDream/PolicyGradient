@@ -124,7 +124,7 @@ Most configurations can be done by modifying fields in [`config.json`](config.js
 
     - When set to `false`, the model will automatically enable [`doubling`](backend/manager.py#L67) (*similar to Blackjack*), which allows the model to *double down* on its existing position once more if an opportunity appears. 
 
-        - *e.g.* If the model used $`50\%`$ of the portfolio value to bought a stock at $\$100$ per share, and the price decreased to $\$90$ per share, the model could decide to double down and use the rest $`50\%`$ to buy at $`\$90`$ per share, effectively lowering the overall entry cost to $`\$95`$ per share by *doubling* its position size.
+        - *e.g.* If the model used $`50\%`$ of the portfolio value to bought a stock at $`\$100`$ per share, and the price decreased to $`\$90`$ per share, the model could decide to double down and use the rest $`50\%`$ to buy at $`\$90`$ per share, effectively lowering the overall entry cost to $`\$95`$ per share by *doubling* its position size.
 
         - If the price later rises to $`\$98`$ per share and the model decides to sell, without doubling, the trade itself would have made a loss of $`-2\%`$, and the portfolio would have lost $`-1\%`$ of its value (*since the trade used $`50\%`$ of the portfolio value*), but with doubling, both the trade and the portfolio would have gained $`+3.16\%`$.
 
