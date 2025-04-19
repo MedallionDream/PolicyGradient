@@ -8,5 +8,15 @@
         "file":     "data/examples/SPY.db",
         "interval": "1h",
         "period":   "2y"
+    },
+    "GC": {
+        "file":     "data/examples/GC.db",
+        "interval": "1h",
+        "period":   "2y"
+    },
+    "TQQQ": {
+        "file":     "data/examples/TQQQ.db",
+        "interval": "1h",
+        "period":   "2y"
     }
 }
