@@ -9,7 +9,7 @@
     "embedding_dim": 8,
     "inaction_cost": 10,
     "action_cost": 0.0,
-    "device": "cpu",
+    "device": "mps",
     "return_thresh": 0.8,
     "sharpe_cutoff": 100,
     "record_frames": false,
